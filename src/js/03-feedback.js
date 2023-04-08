@@ -37,9 +37,14 @@ window.addEventListener('load', () => {
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const formState = JSON.parse(localStorage.getItem('feedback-form-state')) || {};
-  console.log('Email:', formState.email);
-  console.log('Message:', formState.message);
-  localStorage.removeItem('feedback-form-state');
-  emailInput.value = '';
-  messageInput.value = '';
-});
+  if (!formState.email || !formState.message) {
+    alert('Заповніть, будь ласка, форму');
+    return;
+  }
+  console.log(formState);
+    // console.log('Email:', formState.email);
+    // console.log('Message:', formState.message);
+    localStorage.removeItem('feedback-form-state');
+    emailInput.value = '';
+    messageInput.value = '';
+  });
